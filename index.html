@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爷爷的一生</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <section class="page-one" id="pageOne">
+            <header class="hero-header">
+                <h1>爷爷的一生</h1>
+                <p>纪念爷爷离开我们的第一百天</p>
+            </header>
+
+            <section class="grandpa-photo-section">
+                <div class="photo-frame" id="mediaFrame">
+                    <img src="images/page1.jpg" alt="爷爷的照片" id="grandpaPhoto">
+                    <video id="grandpaVideo" src="images/page1.mp4" playsinline controls preload="metadata"></video>
+                </div>
+            </section>
+
+            <section class="grandpa-info">
+                <h2>陈培涛</h2>
+                <p class="lifespan">1951.06.26 — 2026.07.13</p>
+                <div class="details">
+                    <div class="detail">
+                        <span>出生</span>
+                        <p>1951年6月26日</p>
+                    </div>
+                    <div class="detail">
+                        <span>离世</span>
+                        <p>2026年7月13日 上午10:27</p>
+                    </div>
+                    <div class="detail">
+                        <span>地点</span>
+                        <p>宁波</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="page-navigation page-one-navigation">
+                <button class="page-turn-button page-one-next" type="button" onclick="goToPageTwo()">下一页</button>
+            </div>
+        </section>
+
+        <!-- 第二页：复古纪念相册 -->
+        <section class="page-two" id="pageTwo">
+            <div class="album-shell">
+                <div class="album-book" id="memoryBook">
+                    <div class="album-page album-left" id="albumLeftPage">
+                        <h2 id="albumTitle">关于爷爷</h2>
+                    </div>
+                    <div class="album-page album-right" id="albumRightPage">
+                        <img id="albumRightPhoto" src="images/m1.jpg" alt="爷爷的人生照片 1">
+                    </div>
+                </div>
+                <div class="album-controls">
+                    <button type="button" id="albumPrevious" aria-label="上一组照片">←</button>
+                    <span id="albumPageCount">01 / 12</span>
+                    <button type="button" id="albumNext" aria-label="下一组照片">→</button>
+                </div>
+                <div class="album-page-navigation">
+                    <button type="button" class="album-page-button" onclick="goToPageOne()">上一页</button>
+                    <button type="button" class="album-page-button" onclick="goToPageThree()">下一页</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第三页：家庭记忆墙 -->
+        <section class="page-three" id="pageThree" aria-label="与爷爷的家庭记忆">
+            <div class="memory-wall-shell">
+                <header class="memory-wall-header">
+                    <h2>与爷爷的记忆</h2>
+                    <p>每一张照片，都是我们共同珍藏的时光。</p>
+                </header>
+                <div class="memory-wall-grid" id="memoryWall" aria-label="家庭照片墙"></div>
+                <div class="memory-wall-navigation">
+                    <button type="button" class="album-page-button" onclick="goToPageTwo()">上一页</button>
+                    <button type="button" class="album-page-button" onclick="goToPageFour()">下一页</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第四页：爷爷的视频回忆 -->
+        <section class="page-four" id="pageFour" aria-label="爷爷的视频回忆">
+            <div class="video-wall-shell">
+                <header class="video-wall-header">
+                    <h2>爷爷的视频回忆</h2>
+                    <p>那些珍贵的声音与画面，我们会一直记得。</p>
+                </header>
+
+                <div class="video-wall-grid" id="videoWall"></div>
+
+                                <div class="video-wall-navigation">
+                    <button
+                        type="button"
+                        class="album-page-button"
+                        onclick="goToPageThree()"
+                    >上一页</button>
+
+                    <button
+                        type="button"
+                        class="album-page-button"
+                        onclick="goToPageFive()"
+                    >下一页</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 视频播放窗口 -->
+        <div
+            class="video-lightbox"
+            id="videoLightbox"
+            aria-hidden="true"
+        >
+            <button
+                type="button"
+                class="video-lightbox-close"
+                id="videoLightboxClose"
+                aria-label="关闭视频"
+            >×</button>
+
+            <video
+                id="videoLightboxPlayer"
+                controls
+                playsinline
+                preload="metadata"
+            ></video>
+        </div>
+
+        <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
+            <button type="button" class="photo-lightbox-close" id="photoLightboxClose" aria-label="关闭放大照片">×</button>
+            <img id="photoLightboxImage" src="" alt="放大查看的家庭照片">
+        </div>
+
+        <!-- 第五页：写给爷爷的信 -->
+        <section class="page-five" id="pageFive" aria-label="写给爷爷的信">
+
+            <!-- 棕色纪念书封面 -->
+            <div class="letter-book-cover" id="letterBookCover">
+                <div class="letter-book-cover-title">写给爷爷的信</div>
+                <p class="letter-book-hint">点击打开</p>
+            </div>
+
+            <!-- 打开后的信件册 -->
+            <div class="letter-book" id="letterBook" hidden>
+
+                <div class="letter-book-pages">
+
+                    <article class="letter-page is-active" data-letter="0">
+                        <h2>素莲想对您说</h2>
+                        <div class="letter-content">
+                            <!-- 以后在这里填写素莲写给爷爷的话 -->
+                        </div>
+                        <p class="letter-signature">素莲</p>
+                        <span class="letter-page-number">01 / 05</span>
+                    </article>
+
+                    <article class="letter-page" data-letter="1" hidden>
+                        <h2>陈敏想对您说</h2>
+                        <div class="letter-content">
+                            <!-- 以后在这里填写陈敏写给爷爷的话 -->
+                        </div>
+                        <p class="letter-signature">陈敏</p>
+                        <span class="letter-page-number">02 / 05</span>
+                    </article>
+
+                    <article class="letter-page" data-letter="2" hidden>
+                        <h2>里拉想对您说</h2>
+                        <div class="letter-content">
+                            <!-- 以后在这里填写里拉写给爷爷的话 -->
+                        </div>
+                        <p class="letter-signature">里拉</p>
+                        <span class="letter-page-number">03 / 05</span>
+                    </article>
+
+                    <article class="letter-page" data-letter="4" hidden>
+                        <h2>推推想对您说</h2>
+                        <div class="letter-content">
+                            <!-- 以后在这里填写推推写给爷爷的话 -->
+                        </div>
+                        <p class="letter-signature">推推</p>
+                        <span class="letter-page-number">05 / 05</span>
+                    </article>
+
+                    <article class="letter-page" data-letter="3" hidden>
+                        <h2>恬恬想对您说</h2>
+                        <div class="letter-content">
+                            <!-- 以后在这里填写恬恬写给爷爷的话 -->
+                        </div>
+                        <p class="letter-signature">恬恬</p>
+                        <span class="letter-page-number">04 / 05</span>
+                    </article>
+
+                </div>
+
+                <!-- 五张独立的白色索引贴 -->
+                <nav class="letter-index-tabs" aria-label="选择信件">
+                    <button type="button" data-letter-target="0">素莲</button>
+                    <button type="button" data-letter-target="1">陈敏</button>
+                    <button type="button" data-letter-target="2">里拉</button>
+                    <button type="button" data-letter-target="3">推推</button>
+                    <button type="button" data-letter-target="4">恬恬</button>
+                </nav>
+
+                <div class="letter-book-navigation">
+                    <button type="button" id="letterPrevious">上一封</button>
+                    <button type="button" id="letterNext">下一封</button>
+                </div>
+            </div>
+
+            <div class="letter-page-navigation">
+                <button
+                    type="button"
+                    class="album-page-button"
+                    onclick="goToPageFour()"
+                >上一页</button>
+            </div>
+
+        </section>
+
+            </main>
+    <script src="script.js"></script>
+</body>
+</html>
