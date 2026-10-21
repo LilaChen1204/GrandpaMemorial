@@ -1032,23 +1032,37 @@ body.show-page-five .page-five {
 
 /* 第五页：奶奶的百日祭文 */
 .page-five {
-    justify-content: flex-start;
-    align-items: center;
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 36px 24px 48px;
+    background: #f3eee4;
+    scroll-behavior: smooth;
+}
+
+body.show-page-five .page-five {
+    display: block;
+    overflow-y: auto;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 .memorial-letter {
     display: block;
-    flex: 0 0 auto;
+    position: relative;
+    flex: none;
     box-sizing: border-box;
     width: min(900px, 100%);
     height: auto;
     min-height: 0;
     max-height: none;
     margin: 0 auto;
-    padding: clamp(24px, 5vw, 56px);
+    padding: 40px clamp(24px, 5vw, 56px);
     overflow: visible;
     background: #f8f2e7;
     color: #3b3028;
