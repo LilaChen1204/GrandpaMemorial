@@ -1029,3 +1029,93 @@ body.show-page-five .page-five {
         font-size: 14px;
     }
 }
+
+/* 第五页：奶奶的百日祭文 */
+.page-five {
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 36px 24px 48px;
+}
+
+.memorial-letter {
+    display: block;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    width: min(900px, 100%);
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin: 0 auto;
+    padding: clamp(24px, 5vw, 56px);
+    overflow: visible;
+    background: #f8f2e7;
+    color: #3b3028;
+    border: 1px solid #d8c8ad;
+    box-shadow: 0 8px 28px rgba(45, 31, 20, 0.12);
+    font-family: "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+    font-size: 16px;
+    line-height: 2;
+}
+
+.memorial-letter-title {
+    display: block;
+    visibility: visible;
+    margin: 0 0 28px;
+    color: #3b3028;
+    text-align: center;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+}
+
+.memorial-letter-body {
+    display: block;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+}
+
+.memorial-letter-body p {
+    display: block;
+    visibility: visible;
+    height: auto;
+    margin: 0 0 1.15em;
+    color: #3b3028;
+    text-indent: 2em;
+    white-space: normal;
+    overflow: visible;
+    overflow-wrap: anywhere;
+}
+
+.memorial-letter-signoff {
+    display: block;
+    margin-top: 2em;
+    text-align: right;
+}
+
+.memorial-letter-signoff p {
+    display: block;
+    margin: 0 0 0.6em;
+    text-indent: 0;
+}
+
+@media (max-width: 600px) {
+    .page-five {
+        padding: 24px 14px 36px;
+    }
+
+    .memorial-letter {
+        width: 100%;
+        padding: 22px 18px;
+        font-size: 15px;
+        line-height: 1.9;
+    }
+
+    .memorial-letter-title {
+        margin-bottom: 22px;
+        font-size: 1.45rem;
+    }
+}
