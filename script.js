@@ -283,8 +283,8 @@ document.addEventListener("keydown", (event) => {
 
 const letterBookCover = document.getElementById("letterBookCover");
 const letterBook = document.getElementById("letterBook");
-const letterPages = document.querySelectorAll(".letter-page");
-const letterTabs = document.querySelectorAll(".letter-index-tabs button");
+const letterPages = document.querySelectorAll('#letterBook .letter-book-pages > article.letter-page[data-letter]');
+const letterTabs = document.querySelectorAll("#letterBook [data-letter-target]");
 const letterPrevious = document.getElementById("letterPrevious");
 const letterNext = document.getElementById("letterNext");
 
@@ -296,6 +296,7 @@ letterBookCover?.addEventListener("click", () => {
 
     letterBookCover.hidden = true;
     letterBook.hidden = false;
+    letterBook.style.display = "block";
 
     showLetter(0);
 });
@@ -306,9 +307,13 @@ function showLetter(index) {
 
     currentLetter = index;
 
+    // Reset all five letter cards, then show only the selected one.
     letterPages.forEach((page, i) => {
-        page.hidden = i !== index;
-        page.classList.toggle("is-active", i === index);
+        const isSelected = i === index;
+        page.hidden = !isSelected;
+        page.classList.toggle("is-active", isSelected);
+        page.setAttribute("aria-hidden", String(!isSelected));
+        page.scrollTop = 0;
     });
 
     letterTabs.forEach((tab, i) => {
