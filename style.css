@@ -801,21 +801,26 @@ body.show-page-five .page-five {
 .letter-book-pages {
     position: relative;
     width: 100%;
-    height: auto;
-    flex: 1;
+    height: 540px;
+    flex: 0 0 540px;
+    overflow: hidden;
     min-height: 0;
     padding: 18px;
     border: 10px solid #67472f;
     border-radius: 4px;
     background: #e5d3b4;
     box-shadow: 0 18px 40px rgba(55, 39, 25, 0.22);
+    isolation: isolate;
+    contain: layout paint;
 }
 
 .letter-page {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     min-height: 0;
+    box-sizing: border-box;
     overflow-y: auto;
     padding: clamp(28px, 5vw, 60px);
     padding-bottom: 80px;
@@ -830,10 +835,25 @@ body.show-page-five .page-five {
         ),
         #fffaf0;
     box-shadow: inset 0 0 20px rgba(106, 78, 48, 0.05);
+    flex: 0 0 100%;
+}
+
+.letter-page[hidden] {
+    display: none !important;
+}
+
+.letter-page:not([hidden]) {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .letter-page h2 {
-    margin-bottom: 30px;
+    margin-bottom: 16px;
     color: #63462f;
     font-size: clamp(25px, 3vw, 34px);
     font-weight: 400;
@@ -844,7 +864,7 @@ body.show-page-five .page-five {
 .letter-content {
     color: #41382f;
     font-size: 16px;
-    line-height: 2.2;
+    line-height: 1.8;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
@@ -971,16 +991,17 @@ body.show-page-five .page-five {
 
     .letter-book {
         position: relative;
-        width: min(82vw, 420px);
-        height: min(520px, 70vh);
+        width: min(92vw, 520px);
+        height: min(72vh, 680px);
         margin-right: 0;
+        flex-shrink: 0;
     }
 
     .letter-book-pages {
         width: 100%;
-        height: auto;
+        height: 100%;
         min-height: 0;
-        flex: 1;
+        flex: 1 1 auto;
         padding: 8px;
         border-width: 6px;
     }
@@ -989,18 +1010,24 @@ body.show-page-five .page-five {
         width: 100%;
         height: 100%;
         min-height: 0;
+        overflow-x: hidden;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         padding: 24px 18px 70px;
+    }
+
+    .letter-page[hidden] {
+        display: none !important;
     }
 
     .letter-page h2 {
         font-size: 23px;
-        margin-bottom: 24px;
+        margin-bottom: 14px;
     }
 
     .letter-content {
         font-size: 14px;
-        line-height: 2;
+        line-height: 1.8;
     }
 
     .letter-index-tabs {
@@ -1118,4 +1145,32 @@ body.show-page-five .page-five {
         margin-bottom: 22px;
         font-size: 1.45rem;
     }
+
+/* 陈敏信件的段落排版 */
+.letter-content p {
+    margin: 0 0 0.65px;
+    line-height: 1.8;
+    text-indent: 2em;
+    overflow-wrap: anywhere;
+}
+
+.letter-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Ensure only the currently selected letter is painted inside the page area. */
+.letter-book-pages > .letter-page[hidden] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.letter-book-pages > .letter-page:not([hidden]) {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
 }
